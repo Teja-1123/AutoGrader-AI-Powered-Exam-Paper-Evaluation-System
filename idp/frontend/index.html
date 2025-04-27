@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Essay Answer Evaluation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-logo">
+        <h1>AutoGrader</h1>
+      </div>
+      <div class="navbar-links">
+        <a href="#home">Home</a>
+        <!-- <a id="savedDocsLink" onclick="handleSavedDocsClick(event)"
+          >Saved Documents</a
+        > -->
+        <a href="savedDocs.html" id="savedDocsLink">Saved Documents</a>
+
+        <a href="#about">About</a>
+      </div>
+      <div class="navbar-buttons" id="navbar-buttons">
+        <button
+          class="navbar-btn"
+          id="loginBtn"
+          onclick="window.location.href='login.html'"
+        >
+          Login
+        </button>
+        <span id="userGreeting" class="hidden">
+          <i class="person-icon">👤</i> <span id="userName"></span>
+          <button onclick="logout()" class="logout-btn">Logout</button>
+        </span>
+      </div>
+      <!-- <button class="navbar-btn" onclick="window.location.href='signup.html'">
+          Signup
+        </button> -->
+    </div>
+
+    <!-- <div class="container">
+      <h1>Essay Answer Evaluation</h1>
+
+      Input question
+      <label for="question">Enter Your Question:</label>
+      <textarea
+        id="question"
+        placeholder="Type your question here..."
+        required
+      ></textarea>
+
+      User's answer
+      <label for="answer">Enter Your Answer:</label>
+      <textarea
+        id="answer"
+        placeholder="Type your answer here..."
+        required
+      ></textarea>
+
+      <button id="submitBtn">Submit Answer</button>
+
+      Displaying the score and feedback
+      <div id="result" class="hidden">
+        <h2>Evaluation Result:</h2>
+        <p><strong>Score:</strong> <span id="score"></span>/10</p>
+        <p><strong>Feedback:</strong> <span id="feedback"></span></p>
+      </div>
+    </div> -->
+    <div class="container">
+      <h1>Essay Answer Evaluation</h1>
+
+      <!-- Number of Questions Input -->
+      <label for="numQuestions">Enter the number of questions:</label>
+      <input
+        type="number"
+        id="numQuestions"
+        placeholder="Number of Questions"
+        required
+      />
+
+      <button id="generateQuestionsBtn">Generate Questions</button>
+
+      <!-- Questions and Answers -->
+      <div id="questionsContainer"></div>
+
+      <!-- Submit Button -->
+      <a href="#" id="savedDocsLink">Saved Documents</a>
+      <div id="result" class="hidden">
+        <h2>Evaluation Result:</h2>
+        <p><strong>Score:</strong> <span id="score"></span>/10</p>
+        <p><strong>Feedback:</strong> <span id="feedback"></span></p>
+      </div>
+      <div id="savedDocsContainer" class="saved-docs hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

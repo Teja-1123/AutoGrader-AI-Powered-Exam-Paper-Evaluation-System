@@ -1,0 +1,500 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333333;
+}
+
+label {
+  display: block;
+  margin: 20px 0 5px;
+  font-weight: bold;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  resize: vertical;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #e7f3fe;
+  border-left: 5px solid #2196F3;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* body {
+  margin: 0;
+  background-color: #d9e6ef;
+  Light background like your image
+  font-family: Arial, sans-serif;
+}
+
+Navbar Styles
+.navbar {
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  Match login page gradient
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar .navbar-btn {
+  background: #8e2de2;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+ .navbar .navbar-btn {
+  background: #8e2de2;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-left: 5px; Reduce the spacing between buttons
+}
+
+.navbar .navbar-btn:first-of-type {
+  margin-left: 0; Remove margin for the first button to prevent unnecessary left padding
+}
+
+
+.navbar .navbar-btn:hover {
+  background: #4a00e0;
+}
+
+.navbar {
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .navbar .nav-links {
+    display: flex;
+    gap: 30px;
+  }
+
+  .navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .navbar .contact-btn {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+
+  .navbar .contact-btn:hover {
+    background-color: #0097a7;
+  }
+
+#questionsContainer {
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.saved-docs {
+  margin-top: 20px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.saved-docs a {
+  display: block;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+}
+
+.saved-docs a:hover {
+  background-color: #e0e0e0;
+} */
+ /* Global Styling */
+/* body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+Navbar Container
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #8e2de2, #4a00e0);
+  color: white;
+}
+
+Logo Section
+.navbar-logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+Links Section
+.navbar-links {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+
+.navbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+Buttons Section
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-btn {
+  background: #a355f2;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-btn:hover {
+  background: #7e32d6;
+}
+
+Responsive Design
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-links {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar-buttons {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+} */
+ /* Global Styling */
+/* body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5; Subtle background color
+}
+
+Navbar Container
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #8e2de2, #4a00e0); Gradient background
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); Soft shadow for the navbar
+}
+
+Logo Section
+.navbar-logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+Links Section
+.navbar-links {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative; For underline effect
+}
+
+.navbar-links a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+  margin: 0 auto; Center the underline
+}
+
+.navbar-links a:hover::after {
+  width: 100%; Full-width underline on hover
+}
+
+Buttons Section
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-btn {
+  background: rgba(255, 255, 255, 0.2); Transparent button
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+Responsive Design
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-links {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar-buttons {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+.hidden {
+  display: none;
+}
+ */
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5; /* Subtle background color */
+}
+
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #8e2de2, #4a00e0); /* Gradient background */
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for the navbar */
+}
+
+/* Logo Section */
+.navbar-logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Links Section */
+.navbar-links {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative; /* For underline effect */
+}
+
+.navbar-links a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+  margin: 0 auto; /* Center the underline */
+}
+
+.navbar-links a:hover::after {
+  width: 100%; /* Full-width underline on hover */
+}
+
+/* Buttons Section */
+.navbar-buttons {
+  display: flex;
+  align-items: center; /* Align all elements vertically */
+  gap: 10px; /* Adjust spacing between buttons */
+}
+
+#userGreeting {
+  display: flex;
+  align-items: center; /* Align username and icon vertically */
+  gap: 5px; /* Add space between icon and username */
+}
+
+.person-icon {
+  font-size: 1rem;
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.logout-btn {
+  background: #007bff; /* Consistent blue color for button */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+.navbar-btn {
+  background: rgba(255, 255, 255, 0.2); /* Transparent button */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-links {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar-buttons {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.hidden {
+  display: none;
+}

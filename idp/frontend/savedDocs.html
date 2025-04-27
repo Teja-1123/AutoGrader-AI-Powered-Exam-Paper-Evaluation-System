@@ -1,0 +1,287 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Saved Documents</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    Import jsPDF
+  </head>
+  <body>
+    <nav>
+      <button onclick="window.location.href='index.html'">⬅️ Back</button>
+      <h2>📚 Saved Evaluations</h2>
+    </nav>
+
+    <main id="savedDocsContainer">
+      Saved docs will load here
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedDocs = JSON.parse(localStorage.getItem("savedDocs")) || [];
+        const container = document.getElementById("savedDocsContainer");
+
+        if (savedDocs.length === 0) {
+          container.innerHTML = "<p>No saved evaluations found.</p>";
+          return;
+        }
+
+        savedDocs.forEach((doc, index) => {
+          const card = document.createElement("div");
+          card.classList.add("doc-card");
+
+          card.innerHTML = `
+          <h3>Document ${index + 1}</h3>
+          <p><strong>Question:</strong> ${doc.question}</p>
+          <p><strong>Answer:</strong> ${doc.answer}</p>
+          <p><strong>Score:</strong> ${doc.score}/10</p>
+          <p><strong>Feedback:</strong> ${doc.feedback}</p>
+          <button onclick="generatePDF(${index})">📄 Open as PDF</button>
+        `;
+
+          container.appendChild(card);
+        });
+      });
+
+      async function generatePDF(index) {
+        const savedDocs = JSON.parse(localStorage.getItem("savedDocs")) || [];
+        const docData = savedDocs[index];
+
+        if (!docData) {
+          alert("Document not found!");
+          return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+
+        pdf.setFontSize(16);
+        pdf.text(`Evaluation Document ${index + 1}`, 20, 20);
+
+        pdf.setFontSize(12);
+        pdf.text(`Question:`, 20, 40);
+        pdf.text(docData.question, 30, 50);
+
+        pdf.text(`Answer:`, 20, 70);
+        pdf.text(docData.answer, 30, 80);
+
+        pdf.text(`Score: ${docData.score}/10`, 20, 100);
+        pdf.text(`Feedback:`, 20, 120);
+        pdf.text(docData.feedback, 30, 130);
+
+        // Open in new tab
+        pdf.output("dataurlnewwindow");
+      }
+    </script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+      }
+      nav {
+        margin-bottom: 20px;
+      }
+      .doc-card {
+        background: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        margin-top: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Saved Documents</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Import jsPDF -->
+  </head>
+  <body>
+    <nav>
+      <button onclick="window.location.href='index.html'">⬅️ Back</button>
+      <h2>📚 Saved Evaluations</h2>
+    </nav>
+
+    <main id="savedDocsContainer">
+      <!-- Saved docs will load here -->
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedDocs = JSON.parse(localStorage.getItem("savedDocs")) || [];
+        const container = document.getElementById("savedDocsContainer");
+
+        if (savedDocs.length === 0) {
+          container.innerHTML = "<p>No saved evaluations found.</p>";
+          return;
+        }
+
+        // Group evaluations together if they are related
+        let groupedDocs = [];
+        for (let i = 0; i < savedDocs.length; i++) {
+          let groupIndex = Math.floor(i / 2); // Group two evaluations together
+          if (!groupedDocs[groupIndex]) {
+            groupedDocs[groupIndex] = [];
+          }
+          groupedDocs[groupIndex].push(savedDocs[i]);
+        }
+
+        // Loop through the grouped evaluations and create a card for each
+        groupedDocs.forEach((group, index) => {
+          const card = document.createElement("div");
+          card.classList.add("doc-card");
+
+          // Add group heading
+          card.innerHTML = `<h3>Document Group ${index + 1}</h3>`;
+
+          // Add questions, answers, scores, and feedback
+          group.forEach((doc, docIndex) => {
+            card.innerHTML += `
+              <p><strong>Question ${docIndex + 1}:</strong> ${doc.question}</p>
+              <p><strong>Answer ${docIndex + 1}:</strong> ${doc.answer}</p>
+              <p><strong>Score ${docIndex + 1}:</strong> ${doc.score}/10</p>
+              <p><strong>Feedback ${docIndex + 1}:</strong> ${doc.feedback}</p>
+            `;
+          });
+
+          // Add PDF download button
+          card.innerHTML += `<button onclick="generatePDF(${index})">📄 Open as PDF</button>`;
+
+          // Add delete button
+          card.innerHTML += `<button onclick="deleteDocumentGroup(${index})" class="delete-btn">🗑️ Delete Group</button>`;
+
+          container.appendChild(card);
+        });
+      });
+
+      async function generatePDF(index) {
+        const savedDocs = JSON.parse(localStorage.getItem("savedDocs")) || [];
+        const groupedDocs = [];
+
+        // Group two evaluations together
+        for (let i = 0; i < savedDocs.length; i++) {
+          let groupIndex = Math.floor(i / 2);
+          if (!groupedDocs[groupIndex]) {
+            groupedDocs[groupIndex] = [];
+          }
+          groupedDocs[groupIndex].push(savedDocs[i]);
+        }
+
+        const docGroup = groupedDocs[index];
+
+        if (!docGroup) {
+          alert("Document group not found!");
+          return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+
+        pdf.setFontSize(16);
+        pdf.text(`Evaluation Group ${index + 1}`, 20, 20);
+
+        let yPosition = 30;
+        docGroup.forEach((doc, docIndex) => {
+          pdf.setFontSize(12);
+          pdf.text(`Question ${docIndex + 1}:`, 20, yPosition);
+          pdf.text(doc.question, 30, yPosition + 10);
+          yPosition += 20;
+
+          pdf.text(`Answer ${docIndex + 1}:`, 20, yPosition);
+          pdf.text(doc.answer, 30, yPosition + 10);
+          yPosition += 20;
+
+          pdf.text(`Score ${docIndex + 1}: ${doc.score}/10`, 20, yPosition);
+          yPosition += 10;
+
+          pdf.text(`Feedback ${docIndex + 1}:`, 20, yPosition);
+          pdf.text(doc.feedback, 30, yPosition + 10);
+          yPosition += 30;
+        });
+
+        pdf.output("dataurlnewwindow");
+      }
+
+      // Delete Document Group
+      function deleteDocumentGroup(index) {
+        const savedDocs = JSON.parse(localStorage.getItem("savedDocs")) || [];
+        const groupedDocs = [];
+
+        // Group two evaluations together
+        for (let i = 0; i < savedDocs.length; i++) {
+          let groupIndex = Math.floor(i / 2);
+          if (!groupedDocs[groupIndex]) {
+            groupedDocs[groupIndex] = [];
+          }
+          groupedDocs[groupIndex].push(savedDocs[i]);
+        }
+
+        // Remove the document group
+        groupedDocs.splice(index, 1);
+
+        // Flatten the groupedDocs array back into savedDocs
+        const updatedDocs = groupedDocs.flat();
+        localStorage.setItem("savedDocs", JSON.stringify(updatedDocs));
+
+        // Reload the page to reflect changes
+        location.reload();
+      }
+    </script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+      }
+      nav {
+        margin-bottom: 20px;
+      }
+      .doc-card {
+        background: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        margin-top: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .delete-btn {
+        background-color: #dc3545;
+      }
+      .delete-btn:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </body>
+</html>
