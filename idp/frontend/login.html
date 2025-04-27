@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login & Signup Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #8e2de2, #4a00e0);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .container {
+        background: white;
+        width: 900px;
+        min-height: 550px;
+        display: flex;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        position: relative;
+      }
+      .form-section {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .form-section h2 {
+        margin-bottom: 20px;
+        color: #4a00e0;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
+      .btn {
+        width: 100%;
+        padding: 12px;
+        background: #8e2de2;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .btn:hover {
+        background: #4a00e0;
+      }
+      .toggle-link {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 14px;
+      }
+      .toggle-link a {
+        color: #8e2de2;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .social-login {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      /* #google-login-btn {
+        margin: 0 5px;
+        padding: 10px;
+        border-radius: 10px;
+      } */
+
+      .social-login button {
+        flex: 1;
+        margin: 0 5px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .social-login button:hover {
+        background: #f0f0f0;
+      }
+      .social-login #google-login-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+      }
+
+      .illustration-section {
+        flex: 1;
+        background: url("images/loginimage.avif") no-repeat center center/cover;
+      }
+      /* Hide signup form initially */
+      #signup-form {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-section">
+        <!-- Login Form -->
+        <form id="login-form">
+          <h2>Login</h2>
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required />
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div class="toggle-link">
+            Don't have an account? <a onclick="toggleForm()">Signup</a>
+          </div>
+          <div class="social-login">
+            <div id="google-login-btn"></div>
+            <button onclick="handleFacebookLogin()">Facebook</button>
+          </div>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form">
+          <h2>Signup</h2>
+          <div class="form-group">
+            <label for="signup-name">Name</label>
+            <input type="text" id="signup-name" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" required />
+          </div>
+          <button type="submit" class="btn">Signup</button>
+          <div class="toggle-link">
+            Already have an account? <a onclick="toggleForm()">Login</a>
+          </div>
+          <div class="social-login">
+            <div id="google-login-btn"></div>
+
+            <button onclick="handleFacebookLogin()">Facebook</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="illustration-section"></div>
+    </div>
+
+    <script>
+      function toggleForm() {
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        if (loginForm.style.display === "none") {
+          loginForm.style.display = "block";
+          signupForm.style.display = "none";
+        } else {
+          loginForm.style.display = "none";
+          signupForm.style.display = "block";
+        }
+      }
+
+      // Just dummy form submission to see action
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Logged In Successfully!");
+        });
+
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Signed Up Successfully!");
+        });
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: "YOUR_FACEBOOK_APP_ID", // Replace with your Facebook App ID
+          cookie: true,
+          xfbml: true,
+          version: "v12.0",
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      // Handle Facebook Login
+      function handleFacebookLogin() {
+        FB.login(
+          function (response) {
+            if (response.authResponse) {
+              alert("Facebook Login Successful!");
+              console.log("Facebook User Info:", response.authResponse);
+            } else {
+              alert("Facebook Login Failed!");
+            }
+          },
+          { scope: "email,public_profile" }
+        );
+      }
+
+      // Google Login Setup
+      function handleGoogleLogin(token) {
+        alert("Google Login Successful! Token: " + token.credential);
+        console.log("Google Token:", token.credential);
+      }
+
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "YOUR_GOOGLE_CLIENT_ID", // Replace with your Google Client ID
+          callback: handleGoogleLogin,
+        });
+
+        google.accounts.id.renderButton(
+          document.getElementById("google-login-btn"),
+          { theme: "outline", size: "large" } // Customize the button style
+        );
+      };
+      function toggleForm() {
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const toggleText = document.getElementById("toggle-text");
+
+        if (loginForm.style.display === "none") {
+          loginForm.style.display = "block";
+          signupForm.style.display = "none";
+          toggleText.innerHTML =
+            "Don't have an account? <a href='#' onclick='toggleForm()'>Sign up</a>";
+        } else {
+          loginForm.style.display = "none";
+          signupForm.style.display = "block";
+          toggleText.innerHTML =
+            "Already have an account? <a href='#' onclick='toggleForm()'>Login</a>";
+        }
+      }
+
+      // ====== LOGIN FORM SUBMIT ======
+      // document
+      //   .getElementById("login-form")
+      //   .addEventListener("submit", async (e) => {
+      //     e.preventDefault();
+
+      //     const email = document.getElementById("login-email").value;
+      //     const password = document.getElementById("login-password").value;
+
+      //     try {
+      //       const response = await fetch("http://localhost:3000/login", {
+      //         method: "POST",
+      //         headers: { "Content-Type": "application/json" },
+      //         body: JSON.stringify({ email, password }),
+      //       });
+
+      //       const data = await response.json();
+      //       console.log("Response data:", data);
+
+      //       if (response.ok) {
+      //         alert("✅ Login successful!");
+      //         // Redirect to dashboard or homepage
+      //         localStorage.setItem("userName", data.email);
+      //         window.location.href = "/idp/frontend/index.html";
+      //         // localStorage.setItem("token", data.token);
+      //         // localStorage.setItem("userName", data.user.name); // Change this URL as needed
+      //       } else {
+      //         alert(
+      //           `🚫 Login failed: ${
+      //             data.error || "Incorrect email or password."
+      //           }`
+      //         );
+      //       }
+      //     } catch (error) {
+      //       console.error("Login Error:", error);
+      //       alert("⚠️ Could not connect to server. Please try again later.");
+      //     }
+      //   });
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("login-email").value;
+          const password = document.getElementById("login-password").value;
+
+          try {
+            const response = await fetch("http://localhost:3000/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+            console.log("Response data:", data);
+
+            if (response.ok) {
+              alert("✅ Login successful!");
+
+              // Extract user details from the response
+              const userName = data.user?.name || "Guest";
+
+              // Store the user's name in localStorage
+              localStorage.setItem("userName", userName);
+
+              // Store the token for future authenticated requests
+              localStorage.setItem("token", data.token);
+
+              // Redirect to the desired page
+              window.location.href = "/idp/frontend/index.html";
+            } else {
+              alert(
+                `🚫 Login failed: ${
+                  data.error || "Incorrect email or password."
+                }`
+              );
+            }
+          } catch (error) {
+            console.error("Login Error:", error);
+            alert("⚠️ Could not connect to server. Please try again later.");
+          }
+        });
+
+      // ====== SIGNUP FORM SUBMIT ======
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById("signup-name").value;
+          const email = document.getElementById("signup-email").value;
+          const password = document.getElementById("signup-password").value;
+
+          try {
+            const response = await fetch("http://localhost:3000/signup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              alert("✅ Signup successful! Please login now.");
+              toggleForm(); // Switch back to login form
+            } else {
+              alert(
+                `🚫 Signup failed: ${data.error || "Unknown error occurred."}`
+              );
+            }
+          } catch (error) {
+            console.error("Signup Error:", error);
+            alert("⚠️ Could not connect to server. Please try again later.");
+          }
+        });
+    </script>
+    <!-- <script src="script.js"></script> -->
+    <!-- Add these scripts in the head -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js"
+    ></script>
+  </body>
+</html>
